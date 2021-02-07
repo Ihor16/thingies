@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Thingies</string>
+    <string name="meal_plan_enter_res">Res dollars left...</string>
+    <string name="meal_plan_enter_flex">Flex dollars left ...</string>
+</resources>

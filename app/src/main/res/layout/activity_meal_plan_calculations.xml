@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:autofillHints="@string/meal_plan_calc_ResFlexDollars_DefaultValue"
         android:ems="10"
         android:hint="@string/meal_plan_enter_res"
         android:inputType="numberDecimal"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:autofillHints="@string/meal_plan_calc_ResFlexDollars_DefaultValue"
         android:ems="10"
         android:hint="@string/meal_plan_enter_flex"
         android:inputType="numberDecimal"
@@ -36,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
-        android:text="How much can you spend daily"
+        android:text="@string/meal_plan_headline"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +52,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:onClick="onClick_CalcMealPlan"
-        android:text="Calc"
+        android:text="@string/meal_plan_calc_button"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumber_flexDol"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextNumber_flexDol" />
@@ -61,11 +63,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
-        android:text="TextView"
+        android:text="@string/meal_plan_calc_ResFlexDollars_DefaultValue"
         android:textAlignment="center"
         android:textColor="#FFEB3B"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mealPlan_link" />
+
+    <TextView
+        android:id="@+id/textView_mealPlan_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/meal_plan_balance_link"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber_flexDol" />
 

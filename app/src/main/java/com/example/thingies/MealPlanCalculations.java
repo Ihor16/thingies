@@ -2,7 +2,6 @@ package com.example.thingies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -26,32 +25,80 @@ public class MealPlanCalculations extends AppCompatActivity {
 
     public void onClick_CalcMealPlan(View view) {
 
-        Intent intent = getIntent();
-
         EditText editText_res = findViewById(R.id.editTextNumber_resDol);
         EditText editText_flex = findViewById(R.id.editTextNumber_flexDol);
 
-        /*
-         * Calculates how much money the user has
-         */
-        float resDol = Float.parseFloat(editText_res.getText().toString());
-        float flexDol = Float.parseFloat(editText_flex.getText().toString());
-        float sum = resDol + flexDol;
-
-        /*
-         * Calculates how many days the user has
-         * ASSUME: the user moves out on April 30, 2021
-         */
-        LocalDate ld1 = LocalDate.now();
-        LocalDate ld2 = LocalDate.of(2021, Month.APRIL, 30);
-        long diff = ChronoUnit.DAYS.between(ld1, ld2);
-
+        float sum = calculateMoney(editText_res, editText_flex);
+        long diff = calculateDays();
         float canSpendDaily = (sum / diff);
-        DecimalFormat df = new DecimalFormat("#.##");
 
+        /*
+        Prints the message for the user; if they didn't enter value in any field, print another message
+        ASSUME: if the user didn't enter a value, the sum variable is 0
+         */
+        DecimalFormat df = new DecimalFormat("#.##");
         TextView textView = findViewById(R.id.textView_MealPlan_result);
-        String res = "You're good to go with " + df.format(canSpendDaily) + " CAD per day";
+        String res = (sum == 0) ? ("Come on, enter some value...") :
+                ("You're good to go with " + df.format(canSpendDaily) + " CAD per day");
         textView.setText(res);
         textView.setVisibility(View.VISIBLE);
+    }
+
+    /*
+     Calculates how many days left till the user moves out
+     ASSUME: the user moves out on April 30, 2021
+     */
+    private long calculateDays() {
+        LocalDate ld1 = LocalDate.now();
+        LocalDate ld2 = LocalDate.of(2021, Month.APRIL, 30);
+        return ChronoUnit.DAYS.between(ld1, ld2);
+    }
+
+    private static boolean isEditTextEmpty (EditText editText) {
+        return editText.getText().toString().isEmpty();
+    }
+
+    /*
+    If the editText is empty, assign 0 to its value
+     */
+    private static void handleIfEmpty(EditText editText) {
+        editText.setText("0");
+    }
+    /*
+    Calculate how much money the user has
+     */
+    private static float calculateMoney(EditText editText_res, EditText editText_flex) {
+
+        float resDol;
+        float flexDol;
+        float sum;
+
+        /*
+        +-------+------------+------------------+
+        | Res→  | empty      | #                |
+        | Flex↓ |            |                  |
+        +-------+------------+------------------+
+        | empty | Sum : 0    | Flex : 0         |
+        |       |            | Sum : Res        |
+        +-------+------------+------------------+
+        | #     | Res : 0    | Sum : Res + Flex |
+        |       | Sum : Flex |                  |
+        +-------+------------+------------------+
+         */
+
+        if (isEditTextEmpty(editText_res) && isEditTextEmpty(editText_flex)) {
+            sum = 0;
+        } else if (isEditTextEmpty(editText_res)) {
+            handleIfEmpty(editText_res);
+            sum = Float.parseFloat(editText_flex.getText().toString());
+        } else if (isEditTextEmpty(editText_flex)) {
+            handleIfEmpty(editText_flex);
+            sum = Float.parseFloat(editText_res.getText().toString());
+        } else {
+            resDol = Float.parseFloat(editText_res.getText().toString());
+            flexDol = Float.parseFloat(editText_flex.getText().toString());
+            sum = resDol + flexDol;
+        }
+        return sum;
     }
 }

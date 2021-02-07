@@ -5,7 +5,7 @@
     <string name="meal_plan_enter_flex">Flex dollars left…</string>
     <string name="meal_plan_balance_link">
         Wanna check the balance?
-        <a href="https://secure.housing.ubc.ca/cas/sgw/ws_mpvan_plans.accounts?p_action=VIEW_ACCT">Here you go</a>
+        <a href="https://ubccard.ubc.ca/">Here you go</a>
     </string>
     <string name="meal_plan_calc_button">CALC</string>
     <string name="meal_plan_calc_ResFlexDollars_DefaultValue">0</string>

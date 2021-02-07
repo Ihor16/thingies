@@ -54,16 +54,19 @@ public class MealPlanCalculations extends AppCompatActivity {
         return ChronoUnit.DAYS.between(ld1, ld2);
     }
 
-    private static boolean isEditTextEmpty (EditText editText) {
+    private static boolean isEditTextEmpty(EditText editText) {
         return editText.getText().toString().isEmpty();
     }
 
     /*
     If the editText is empty, assign 0 to its value
+    and move the cursor to the left
      */
     private static void handleIfEmpty(EditText editText) {
         editText.setText("0");
+        editText.setSelection(1);
     }
+
     /*
     Calculate how much money the user has
      */

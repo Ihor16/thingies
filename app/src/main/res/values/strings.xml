@@ -9,4 +9,7 @@
     </string>
     <string name="meal_plan_calc_button">CALC</string>
     <string name="meal_plan_calc_ResFlexDollars_DefaultValue">0</string>
+    <string name="meal_plan_calc_MoveOutDate_DefaultDate">April 30, 2021</string>
+    <string name="meal_plan_calc_MoveOutDate_DefaultText">Moving out on: </string>
+    <string name="meal_plan_calc_MoveOutDate_ChangeButtonText">Change Date</string>
 </resources>
